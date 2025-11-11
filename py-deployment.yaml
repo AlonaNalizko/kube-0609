@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: py-deployment
+spec:
+  selector:
+    matchLabels:
+      app: py-service
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: py-service
+    spec:
+      containers:
+      - name: py-service
+        image: py-service:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
